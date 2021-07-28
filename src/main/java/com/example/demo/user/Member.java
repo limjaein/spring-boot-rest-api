@@ -12,28 +12,26 @@ import javax.persistence.Table;
 @Entity
 @Table
 @SequenceGenerator(
-		name = "user_seq_gen",					// sequence generator 이름 
-		sequenceName = "user_seq",				// sequence 이름 
+		name = "mem_seq_gen",					// sequence generator 이름 
+		sequenceName = "mem_seq",				// sequence 이름 
 		allocationSize = 1						// 메모리를 통해 할당할 범위 사이즈 	
 )
-public class User {
+public class Member {
 	@Id
 	@GeneratedValue(
 			strategy = GenerationType.SEQUENCE,		// 사용할 전략을 sequence로 선택 
-			generator = "user_seq_gen"				// sequence generator 선택 
+			generator = "mem_seq_gen"				// sequence generator 선택 
 	)	
 	private Long id;
 	private String pwd;
 	private String name;
 	private LocalDate dob;	// date of birth
 	
-	public User() {
+	public Member() {
 		
 	}
 
-	public User(Long id, String pwd, String name, LocalDate dob) {
-		super();
-		this.id = id;
+	public Member(String pwd, String name, LocalDate dob) {
 		this.pwd = pwd;
 		this.name = name;
 		this.dob = dob;
@@ -73,7 +71,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", pwd=" + pwd + ", name=" + name + ", dob=" + dob + "]";
+		return "Member [id=" + id + ", pwd=" + pwd + ", name=" + name + ", dob=" + dob + "]";
 	}
 	
 }
