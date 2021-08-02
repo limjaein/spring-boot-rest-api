@@ -1,6 +1,7 @@
 package com.example.demo.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,12 @@ public class MemberService {
 	}
 
 	public void addNewMember(Member member) {
+		Optional<Member> memberOptional = memberRepository.findMemberByName(member.getName());
+		
+		if (memberOptional.isPresent()) {
+			throw new IllegalStateException("name taken");
+		}
+		memberRepository.save(member);
 		System.out.println(member);
 	}
 }
